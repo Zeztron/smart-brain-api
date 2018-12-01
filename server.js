@@ -7,7 +7,7 @@ const app = express();
 app.use(bodyParser.json());
 app.use(cors());
 const database = {
-  user: [
+  users: [
     {
       id: "123",
       name: "John",
