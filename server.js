@@ -64,12 +64,17 @@ app.post("/register", (req, res) => {
     bcrypt.hash(password, null, null, function (err, hash) {
         console.log(hash);
     });
-    db("users").insert({
-        email: email,
-        name: name,
-        joined: new Date()
-    }).then(console.log)
-    res.json(database.users[database.users.length - 1]);
+    db("users")
+        .returning("*")
+        .insert({
+            email: email,
+            name: name,
+            joined: new Date()
+        })
+        .then(user => {
+            res.json(user[0]);
+        })
+        .catch(err => res.status(400).json("Unable to Register"))
 });
 
 app.get("/profile/:id", (req, res) => {
