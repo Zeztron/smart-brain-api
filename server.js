@@ -62,7 +62,7 @@ app.post("/imageurl", (req, res) => {image.handleApiCall(req, res)});
 // // Load hash from your password DB.
 
 app.listen(process.env.PORT || 3000, () => {
-    console.log("app is running")
+  console.log("app is running");
 });
 
 
